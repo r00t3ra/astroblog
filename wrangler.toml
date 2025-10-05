@@ -1,0 +1,12 @@
+name = "astroblog"
+main = "dist/_worker.js"
+compatibility_date = "2024-05-01"
+
+[site]
+bucket = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "astroblog-db"
+database_id = "ec050255-dfba-4846-afc2-198becfc1002" # This will be filled in by Wrangler
+migrations_dir = "migrations"
