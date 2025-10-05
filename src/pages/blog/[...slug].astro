@@ -1,16 +1,16 @@
 ---
+---
 import BlogPost from '../../layouts/BlogPost.astro';
-
+export const prerender = false;
 const slug = Astro.params.slug;
 const res = await fetch(`/api/posts`);
 const posts = res.ok ? await res.json() : [];
 const post = posts.find(p => p.slug === slug);
-
-export const prerender = false;
+---
 
 {post && (
-	<BlogPost title={post.title} published_at={post.published_at}>
-		<div set:html={post.content} />
-	</BlogPost>
+  <BlogPost title={post.title} published_at={post.published_at}>
+    <div set:html={post.content} />
+  </BlogPost>
 )}
 {!post && <h1>Post not found</h1>}
