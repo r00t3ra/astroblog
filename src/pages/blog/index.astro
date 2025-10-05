@@ -3,9 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-// D1 API'den blog yazılarını çek
-const res = await fetch('/api/posts');
-const posts = res.ok ? await res.json() : [];
+import BlogList from '../../components/BlogList.jsx';
 ---
 
 <!doctype html>
@@ -86,17 +84,7 @@ const posts = res.ok ? await res.json() : [];
 		<Header />
 		<main>
 			<section>
-				<ul>
-					{posts.length === 0 && <li>No posts found.</li>}
-					{posts.map(post => (
-						<li>
-							<a href={`/blog/${post.slug}/`}>
-								<h4 class="title">{post.title}</h4>
-								<p class="date">{post.published_at}</p>
-							</a>
-						</li>
-					))}
-				</ul>
+				<BlogList client:load />
 			</section>
 		</main>
 		<Footer />
