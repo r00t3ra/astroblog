@@ -6,7 +6,7 @@ const res = await fetch(`/api/posts`);
 const posts = res.ok ? await res.json() : [];
 const post = posts.find(p => p.slug === slug);
 
----
+export const prerender = false;
 
 {post && (
 	<BlogPost title={post.title} published_at={post.published_at}>
